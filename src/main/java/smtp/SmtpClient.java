@@ -1,2 +1,5 @@
-package smtp;public class SmtpClient {
+package smtp;
+
+public class SmtpClient {
+
 }

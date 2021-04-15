@@ -1,2 +1,17 @@
-package config;public interface IConfigurationManager {
+package config;
+
+import model.mail.Message;
+import model.mail.Person;
+
+import java.util.List;
+
+public interface IConfigurationManager {
+    String getSmtpServerAddress();
+    int getSmtpServerPort();
+
+    int getNumberOfGroup();
+    List<Person> getWitnesses();
+    List<Person> getVictims();
+
+    List<Message> getMessages();
 }

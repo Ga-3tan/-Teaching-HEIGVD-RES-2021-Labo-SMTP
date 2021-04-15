@@ -1,4 +1,4 @@
-package email;
+package model.prank;
 
-public class EmailGenerator {
+public class PrankGenerator {
 }

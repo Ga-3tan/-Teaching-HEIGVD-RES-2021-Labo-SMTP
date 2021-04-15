@@ -1,2 +1,5 @@
-package model.prank;public class Prank {
+package model.prank;
+
+public class Prank {
+
 }

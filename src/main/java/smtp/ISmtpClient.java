@@ -1,2 +1,4 @@
-package smtp;public interface ISmtpClient {
+package smtp;
+
+public interface ISmtpClient {
 }
