@@ -25,7 +25,6 @@ public class ConfigurationManager implements IConfigurationManager{
             FileReader emailReader = new FileReader("configuration/emails.utf8");
             FileReader messageReader = new FileReader("configuration/messages.utf8");
 
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
