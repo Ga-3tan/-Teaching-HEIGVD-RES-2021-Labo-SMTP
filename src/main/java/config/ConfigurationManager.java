@@ -109,7 +109,6 @@ public class ConfigurationManager implements IConfigurationManager {
             }
             messages.add(new Message(subject, message.toString()));
             messageReader.close();
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } finally {
