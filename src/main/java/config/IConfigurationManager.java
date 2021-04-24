@@ -1,6 +1,5 @@
 package config;
 
-import model.mail.Group;
 import model.mail.Message;
 import model.mail.Person;
 
@@ -17,5 +16,5 @@ public interface IConfigurationManager {
 
     List<Message> getMessages();
 
-    String getWitnessToCC();
+    List<String> getWitnessToCC();
 }

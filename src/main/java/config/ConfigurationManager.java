@@ -1,12 +1,12 @@
 package config;
 
 import lombok.Getter;
-import model.mail.Group;
 import model.mail.Message;
 import model.mail.Person;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -59,8 +59,10 @@ public class ConfigurationManager implements IConfigurationManager {
     }
 
     @Override
-    public String getWitnessToCC() {
-        return witnessToCC;
+    public List<String> getWitnessToCC() {
+        List<String> witnesses = new ArrayList<>();
+        witnesses.add(witnessToCC);
+        return witnesses;
     }
 
     @Override
