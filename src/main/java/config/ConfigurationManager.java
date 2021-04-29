@@ -1,21 +1,17 @@
 package config;
 
-import lombok.Getter;
 import model.mail.Message;
 import model.mail.Person;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class ConfigurationManager implements IConfigurationManager {
     private String smtpServerAddress;
     private int smtpServerPort;
     private int numberOfGroup;
-    private String witnessToCC;
+    private final List<String> witnessesToCC = new ArrayList<>();
 
     public ConfigurationManager() {
         FileReader propertiesReader = null;
@@ -30,7 +26,7 @@ public class ConfigurationManager implements IConfigurationManager {
             smtpServerAddress = properties.getProperty("smtpServerAddress");
             smtpServerPort = Integer.parseInt(properties.getProperty("smtpServerPort"));
             numberOfGroup = Integer.parseInt(properties.getProperty("numberOfGroups"));
-            witnessToCC = properties.getProperty("witnessToCC");
+            Collections.addAll(witnessesToCC, properties.getProperty("witnessToCC").split(","));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -59,10 +55,8 @@ public class ConfigurationManager implements IConfigurationManager {
     }
 
     @Override
-    public List<String> getWitnessToCC() {
-        List<String> witnesses = new ArrayList<>();
-        witnesses.add(witnessToCC);
-        return witnesses;
+    public List<String> getWitnessesToCC() {
+        return witnessesToCC;
     }
 
     @Override
@@ -100,7 +94,7 @@ public class ConfigurationManager implements IConfigurationManager {
             StringBuilder message = new StringBuilder();
             while ((line = messageReader.readLine()) != null) {
                 if (line.contains("Subject:")) {
-                    subject = line.split("Subject:")[1].trim();
+                    subject = line.substring("Subject:".length());
                 } else if (line.contains("====")) {
                     messages.add(new Message(subject, message.toString()));
                     message = new StringBuilder();
