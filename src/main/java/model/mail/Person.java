@@ -8,9 +8,9 @@ public class Person {
     private final String firstName;
     private final String address;
 
-    public Person(String nom, String prenom, String email) {
-        this.lastName = nom;
-        this.firstName = prenom;
+    public Person(String firstname, String lastname, String email) {
+        this.lastName = lastname;
+        this.firstName = firstname;
         this.address = email;
     }
 }
