@@ -5,7 +5,7 @@ import model.mail.Mail;
 public class SmtpClient implements ISmtpClient {
 
     public SmtpClient(String serverAddress, int serverPort) {
-        // TODO
+        // Creates the socket
     }
 
     @Override

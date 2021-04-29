@@ -45,7 +45,7 @@ public class PrankGenerator {
             List<Person> members = g.getMembers();
             Collections.shuffle(members);
             Person sender = members.remove(0);
-            Prank newPrank = new Prank(sender, members, configManager.getWitnessToCC(), messages.get(msgIndex));
+            Prank newPrank = new Prank(sender, members, configManager.getWitnessesToCC(), messages.get(msgIndex));
             msgIndex = (msgIndex + 1) % messages.size();
             output.add(newPrank);
         }

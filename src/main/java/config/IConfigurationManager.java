@@ -16,5 +16,5 @@ public interface IConfigurationManager {
 
     List<Message> getMessages();
 
-    List<String> getWitnessToCC();
+    List<String> getWitnessesToCC();
 }
