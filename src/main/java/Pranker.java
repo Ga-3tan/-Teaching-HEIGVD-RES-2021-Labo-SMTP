@@ -25,6 +25,8 @@ public class Pranker {
             smtpClient = new SmtpClient(configManager.getSmtpServerAddress(), configManager.getSmtpServerPort());
         } catch (IOException e) {
             LOG.log(Level.SEVERE, "Error when parsing config data, there should be a folder \"configuration\" with the following files inside : \"config.properties\", \"emails.utf8\", \"messages.utf8\":\n\t" + e.getMessage(), e);
+        } catch (IllegalArgumentException e) {
+            LOG.log(Level.SEVERE, "Configuration data contains wrong values, please check the files\n\t" + e.getMessage(), e);
         }
 
         for (Prank p : pranks) {

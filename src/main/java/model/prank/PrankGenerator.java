@@ -14,16 +14,19 @@ public class PrankGenerator {
     private static final Logger LOG = Logger.getLogger(PrankGenerator.class.getName());
     private final IConfigurationManager configManager;
 
-    public PrankGenerator(IConfigurationManager configurationManager) throws IllegalArgumentException{
+    public PrankGenerator(IConfigurationManager configurationManager) {
         this.configManager = configurationManager;
     }
 
-    public List<Prank> generatePranks() throws IOException {
+    public List<Prank> generatePranks() throws IOException, IllegalArgumentException {
         List<Prank> output = new ArrayList<>();
 
         // Retrives the list of messages
         List<Message> messages = configManager.getMessages();
         int msgIndex = 0;
+
+        // Checks if messages are empty
+        if (messages.isEmpty()) throw new IllegalArgumentException("No messages in message.utf8 file");
 
         // Retrieves the groups data
         List<Person> victims = configManager.getVictims();
