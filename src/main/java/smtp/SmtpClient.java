@@ -17,7 +17,7 @@ public class SmtpClient implements ISmtpClient {
     private static final String CRLF = "\r\n";
     private final int port;
     private final String address;
-    private SSLSocket socket = null;
+    private Socket socket = null;
 
     public SmtpClient(String serverAddress, int serverPort) {
         // sets the variables
