@@ -2,6 +2,7 @@ package smtp;
 
 import model.mail.Mail;
 
+import javax.net.ssl.SSLSocket;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -16,7 +17,7 @@ public class SmtpClient implements ISmtpClient {
     private static final String CRLF = "\r\n";
     private final int port;
     private final String address;
-    private Socket socket = null;
+    private SSLSocket socket = null;
 
     public SmtpClient(String serverAddress, int serverPort) {
         // sets the variables
@@ -75,17 +76,25 @@ public class SmtpClient implements ISmtpClient {
             writer.flush();
             readServer(reader, 354);
 
+            // Specifies the charset and content type
+            writer.write("Content-Type: text/plain; charset=utf-8" + CRLF);
+            writer.flush();
+
+            // Specifies the sender
+            writer.write("from: " + mail.getFrom() + CRLF);
+            writer.flush();
+
             // Specifies the rcpts
             for (String to : mail.getTo()) {
                 writer.write("to: " + to + CRLF);
                 writer.flush();
             }
 
-            // Writes the CC mails
+            /*/ Writes the CC mails
             for (String cc : mail.getCCs()) {
                 writer.write("cc: " + cc + CRLF);
                 writer.flush();
-            }
+            }*/
 
             // Writes the subject
             writer.write("Subject: " + mail.getSubject() + CRLF + CRLF);
