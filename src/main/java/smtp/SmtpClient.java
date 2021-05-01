@@ -31,7 +31,7 @@ public class SmtpClient implements ISmtpClient {
      * @param serverPort The smtp server port
      */
     public SmtpClient(String serverAddress, int serverPort) {
-        // sets the variables
+        // Sets the variables
         address = serverAddress;
         port = serverPort;
     }

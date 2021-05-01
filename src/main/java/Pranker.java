@@ -37,18 +37,20 @@ public class Pranker {
             pranks = prankGenerator.generatePranks();
             smtpClient = new SmtpClient(configManager.getSmtpServerAddress(), configManager.getSmtpServerPort());
         } catch (IOException e) {
-            LOG.log(Level.SEVERE, "Error when parsing config data, there should be a folder \"configuration\" with the following files inside : \"config.properties\", \"emails.utf8\", \"messages.utf8\":\n\t" + e.getMessage(), e);
+            System.err.println("Error when parsing config data, there should be a folder " +
+                    "\"configuration\" with the following files inside : \"config.properties\", " +
+                    "\"emails.utf8\", \"messages.utf8\":\n\t" + e.getMessage());
         } catch (IllegalArgumentException e) {
-            LOG.log(Level.SEVERE, "Configuration data contains wrong values, please check the files\n\t" + e.getMessage(), e);
+            System.err.println("Configuration data contains wrong values, please check the files\n\t" + e.getMessage());
         }
 
         for (Prank p : pranks) {
             try {
                 smtpClient.sendMail(p.generateMail());
             } catch (IOException e) {
-                LOG.log(Level.SEVERE, "Mail was not sent due to an IO exception:\n\t" + e.getMessage(), e);
+                System.err.println("Mail was not sent due to an IO exception:\n\t" + e.getMessage());
             } catch (RuntimeException e) {
-                LOG.log(Level.SEVERE, "Mail was not sent due to a SMTP unexpected response:\n\t" + e.getMessage(), e);
+                System.err.println("Mail was not sent due to a SMTP unexpected response:\n\t" + e.getMessage());
             }
         }
 

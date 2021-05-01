@@ -19,7 +19,6 @@ import java.util.logging.Logger;
  * @since 01.05.2021
  */
 public class ConfigurationManager implements IConfigurationManager {
-    private static final Logger LOG = Logger.getLogger(ConfigurationManager.class.getName());
     private final String smtpServerAddress;
     private final int smtpServerPort;
     private final int numberOfGroup;
