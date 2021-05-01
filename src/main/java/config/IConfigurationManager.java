@@ -3,6 +3,7 @@ package config;
 import model.mail.Message;
 import model.mail.Person;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IConfigurationManager {
@@ -12,9 +13,9 @@ public interface IConfigurationManager {
 
     int getNumberOfGroup();
 
-    List<Person> getVictims();
+    List<Person> getVictims() throws IOException;
 
-    List<Message> getMessages();
+    List<Message> getMessages() throws IOException;
 
     List<String> getWitnessesToCC();
 }
