@@ -16,10 +16,17 @@ public class ConfigurationManager implements IConfigurationManager {
     private int numberOfGroup;
     private final List<String> witnessesToCC = new ArrayList<>();
 
+    private final String CONFIG_FOLDER_PATH;
+
     public ConfigurationManager() throws IOException {
+        this("configuration/");
+    }
+
+    public ConfigurationManager(String configFolderPath) throws IOException {
+        this.CONFIG_FOLDER_PATH = configFolderPath;
         FileReader propertiesReader = null;
         try {
-            propertiesReader = new FileReader("configuration/config.properties");
+            propertiesReader = new FileReader(CONFIG_FOLDER_PATH + "config.properties");
 
             // read properties
             Properties properties = new Properties();
@@ -65,7 +72,7 @@ public class ConfigurationManager implements IConfigurationManager {
         BufferedReader emailReader = null;
         try {
             String line;
-            emailReader = new BufferedReader(new InputStreamReader(new FileInputStream("configuration/emails.utf8"), StandardCharsets.UTF_8));
+            emailReader = new BufferedReader(new InputStreamReader(new FileInputStream(CONFIG_FOLDER_PATH + "emails.utf8"), StandardCharsets.UTF_8));
             while ((line = emailReader.readLine()) != null) {
                 String firstName = "", lastname = "";
                 String[] tokens = line.split("@");
@@ -91,7 +98,7 @@ public class ConfigurationManager implements IConfigurationManager {
         List<Message> messages = new LinkedList<>();
         BufferedReader messageReader = null;
         try {
-            messageReader = new BufferedReader(new InputStreamReader(new FileInputStream("configuration/messages.utf8"), StandardCharsets.UTF_8));
+            messageReader = new BufferedReader(new InputStreamReader(new FileInputStream(CONFIG_FOLDER_PATH + "messages.utf8"), StandardCharsets.UTF_8));
             String line;
             String subject = "";
             StringBuilder message = new StringBuilder();

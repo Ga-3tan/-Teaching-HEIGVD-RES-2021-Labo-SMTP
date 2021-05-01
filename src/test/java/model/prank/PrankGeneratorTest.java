@@ -15,13 +15,13 @@ import java.util.List;
 
 public class PrankGeneratorTest {
 
-    Person p1 = new Person("Zwock", "Getan", "gaetan.imposter@jaimail.com");
-    Person p2 = new Person("Moziero", "Mörkö", "marco.imposter@mailmail.com");
-    Person p3 = new Person("E", "E", "ee@eemail.yeet");
-    Person p4 = new Person("Binks", "JarJar", "exiled@gungan.oof");
-    Person p5 = new Person("Pranker", "The", "the.pranker@prank.com");
-    Person p6 = new Person("Pranker2", "The", "the.pranker2@prank.com");
-    Person p7 = new Person("Pranker3", "The", "the.pranker3@prank.com");
+    Person p1 = new Person("getan", "zwock", "getan.zwock@jaimail.com");
+    Person p2 = new Person("mörkö", "moziero", "morko.moziero@mailmail.com");
+    Person p3 = new Person("e", "e", "e.e@eemail.yeet");
+    Person p4 = new Person("jarjar", "binks", "exiled@gungan.oof");
+    Person p5 = new Person("the", "pranker", "the.pranker@prank.com");
+    Person p6 = new Person("the", "pranker2", "the.pranker2@prank.com");
+    Person p7 = new Person("the", "pranker3", "the.pranker3@prank.com");
 
     ArrayList<Person> victims;
 
