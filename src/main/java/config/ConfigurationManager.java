@@ -67,8 +67,9 @@ public class ConfigurationManager implements IConfigurationManager {
             String line;
             emailReader = new BufferedReader(new InputStreamReader(new FileInputStream("configuration/emails.utf8"), StandardCharsets.UTF_8));
             while ((line = emailReader.readLine()) != null) {
-                String[] mailToken = line.split("@")[0].split("\\.");
-                victims.add(new Person(mailToken[1], mailToken[0], line));
+                String[] mailToken = line.split(",");
+                if (mailToken.length < 3) continue;
+                victims.add(new Person(mailToken[1], mailToken[0], mailToken[2]));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

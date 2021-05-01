@@ -5,10 +5,10 @@ import lombok.Getter;
 @Getter
 public class Message {
     private final String subject;
-    private final String message;
+    private final String content;
 
     public Message(String subject, String message) {
         this.subject = subject;
-        this.message = message;
+        this.content = message;
     }
 }

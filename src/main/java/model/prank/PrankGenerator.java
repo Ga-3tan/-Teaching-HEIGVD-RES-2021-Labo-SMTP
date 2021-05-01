@@ -60,7 +60,8 @@ public class PrankGenerator {
 
         // Fills the groups
         Collections.shuffle(persons);
-        for (int i = 0; i < persons.size(); ++i)
+        int nbPersons = persons.size();
+        for (int i = 0; i < nbPersons; ++i)
             groups.get(i % nbGroups).addMember(persons.remove(0));
 
         return groups;
