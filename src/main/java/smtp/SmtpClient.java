@@ -17,7 +17,6 @@ public class SmtpClient implements ISmtpClient {
     private static final String CRLF = "\r\n";
     private final int port;
     private final String address;
-    private Socket socket = null;
 
     public SmtpClient(String serverAddress, int serverPort) {
         // sets the variables
@@ -30,7 +29,7 @@ public class SmtpClient implements ISmtpClient {
 
         // Creates the socket and connects to the smtp server
         System.out.println("Connecting to the SMTP server " + address + ":" + port);
-        socket = new Socket(InetAddress.getByName(address), port);
+        Socket socket = new Socket(InetAddress.getByName(address), port);
 
         // Sends the mail
         BufferedReader reader = null;
@@ -121,10 +120,8 @@ public class SmtpClient implements ISmtpClient {
 
     private void readServer(BufferedReader reader, int expectedSmtpCode) throws IOException, RuntimeException {
         String line = reader.readLine();
-        System.out.println(line);
-        while (line != null && line.charAt(3) != ' ') {
+        while (line != null && line.charAt(3) != ' ')
             line = reader.readLine();
-        }
 
         // Checks response code
         if (line == null || Integer.parseInt(line.substring(0, 3)) != expectedSmtpCode)
