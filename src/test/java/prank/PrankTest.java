@@ -1,13 +1,12 @@
-package model.prank;
+package prank;
 
-import model.mail.Mail;
-import model.mail.Message;
-import model.mail.Person;
+import prank.Message;
+import prank.Person;
+import prank.Prank;
+import smtp.Mail;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -54,29 +53,4 @@ public class PrankTest {
         Assertions.assertEquals(mail.getContent(), m2.getContent());
         Assertions.assertEquals(mail.getSubject(), m2.getSubject());
     }
-
-    @Test
-    public void weShouldntBeAbleToGenerateAMailFromAPrankWithoutVictims() {
-        List<Person> victims = new ArrayList<>();
-        List<String> witnesses = new ArrayList<>(Arrays.asList(p3.getAddress(), p4.getAddress()));
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Prank(pranker, victims, witnesses, m2));
-    }
-
-    @Test
-    public void weShouldntBeAbleToGenerateAMailFromAPrankWithoutSender() {
-        List<Person> victims = new ArrayList<>(Arrays.asList(p1, p2));
-        List<String> witnesses = new ArrayList<>(Arrays.asList(p3.getAddress(), p4.getAddress()));
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Prank(null, victims, witnesses, m2));
-    }
-
-    @Test
-    public void weShouldntBeAbleToGenerateAMailFromAPrankWithoutAMessageObject() {
-        List<Person> victims = new ArrayList<>(Arrays.asList(p1, p2));
-        List<String> witnesses = new ArrayList<>(Arrays.asList(p3.getAddress(), p4.getAddress()));
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Prank(pranker, victims, witnesses, null));
-    }
-
 }

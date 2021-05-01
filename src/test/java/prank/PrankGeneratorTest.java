@@ -1,9 +1,11 @@
-package model.prank;
+package prank;
 
 import config.IConfigurationManager;
-import model.mail.Mail;
-import model.mail.Message;
-import model.mail.Person;
+import prank.Message;
+import prank.Person;
+import prank.Prank;
+import prank.PrankGenerator;
+import smtp.Mail;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -122,6 +124,16 @@ public class PrankGeneratorTest {
         messages = new ArrayList<>(Arrays.asList(m1, m2));
         witnessToCC = new ArrayList<>(Arrays.asList("gaetan.zwick@heig-vd.ch", "marco.maziero@heig-vd.ch"));
         numberOfGroups = 0;
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new PrankGenerator(config).generatePranks());
+    }
+
+    @Test
+    public void weShouldntBeAbleToGeneratePranksWithNoMessages() {
+        victims = new ArrayList<>(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
+        messages = new ArrayList<>();
+        witnessToCC = new ArrayList<>(Arrays.asList("gaetan.zwick@heig-vd.ch", "marco.maziero@heig-vd.ch"));
+        numberOfGroups = 2;
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> new PrankGenerator(config).generatePranks());
     }

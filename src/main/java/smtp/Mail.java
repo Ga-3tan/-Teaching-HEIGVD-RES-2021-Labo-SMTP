@@ -1,7 +1,6 @@
-package model.mail;
+package smtp;
 
 import lombok.Getter;
-import model.prank.Group;
 
 import java.util.List;
 

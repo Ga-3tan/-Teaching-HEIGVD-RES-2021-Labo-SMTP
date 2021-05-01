@@ -1,11 +1,8 @@
-package model.prank;
+package prank;
 
-import model.mail.Person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 

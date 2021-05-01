@@ -1,7 +1,7 @@
 import config.ConfigurationManager;
 import config.IConfigurationManager;
-import model.prank.Prank;
-import model.prank.PrankGenerator;
+import prank.Prank;
+import prank.PrankGenerator;
 import smtp.ISmtpClient;
 import smtp.SmtpClient;
 

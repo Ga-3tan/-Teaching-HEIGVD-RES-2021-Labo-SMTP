@@ -1,7 +1,7 @@
 package config;
 
-import model.mail.Message;
-import model.mail.Person;
+import prank.Message;
+import prank.Person;
 
 import java.io.IOException;
 import java.util.List;

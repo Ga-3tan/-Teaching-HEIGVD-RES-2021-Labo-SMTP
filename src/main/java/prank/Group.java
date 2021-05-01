@@ -1,7 +1,6 @@
-package model.prank;
+package prank;
 
 import lombok.Getter;
-import model.mail.Person;
 
 import java.util.ArrayList;
 import java.util.List;
