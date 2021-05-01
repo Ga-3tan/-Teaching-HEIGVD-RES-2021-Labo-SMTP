@@ -2,18 +2,21 @@ package config;
 
 import model.mail.Message;
 import model.mail.Person;
+import model.prank.PrankGenerator;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.logging.Logger;
 
 public class ConfigurationManager implements IConfigurationManager {
+    private static final Logger LOG = Logger.getLogger(ConfigurationManager.class.getName());
     private String smtpServerAddress;
     private int smtpServerPort;
     private int numberOfGroup;
     private final List<String> witnessesToCC = new ArrayList<>();
 
-    public ConfigurationManager() {
+    public ConfigurationManager() throws IOException {
         FileReader propertiesReader = null;
         try {
             propertiesReader = new FileReader("configuration/config.properties");
@@ -27,12 +30,9 @@ public class ConfigurationManager implements IConfigurationManager {
             smtpServerPort = Integer.parseInt(properties.getProperty("smtpServerPort"));
             numberOfGroup = Integer.parseInt(properties.getProperty("numberOfGroups"));
             Collections.addAll(witnessesToCC, properties.getProperty("witnessToCC").split(","));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         } finally {
             try {
-                assert propertiesReader != null;
-                propertiesReader.close();
+                if (propertiesReader != null) propertiesReader.close();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
@@ -60,7 +60,7 @@ public class ConfigurationManager implements IConfigurationManager {
     }
 
     @Override
-    public List<Person> getVictims() {
+    public List<Person> getVictims() throws IOException {
         List<Person> victims = new LinkedList<>();
         BufferedReader emailReader = null;
         try {
@@ -69,19 +69,16 @@ public class ConfigurationManager implements IConfigurationManager {
             while ((line = emailReader.readLine()) != null) {
                 String firstName = "", lastname = "";
                 String[] tokens = line.split("@");
-                String[] personInfo = tokens[0].split(".");
+                String[] personInfo = tokens[0].split("\\.");
                 if (personInfo.length > 1) {
                     firstName = personInfo[0];
                     lastname  = personInfo[1];
                 }
                 victims.add(new Person(firstName, lastname, line));
             }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         } finally {
             try {
-                assert emailReader != null;
-                emailReader.close();
+                if (emailReader != null) emailReader.close();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
@@ -90,7 +87,7 @@ public class ConfigurationManager implements IConfigurationManager {
     }
 
     @Override
-    public List<Message> getMessages() {
+    public List<Message> getMessages() throws IOException {
         List<Message> messages = new LinkedList<>();
         BufferedReader messageReader = null;
         try {
@@ -110,12 +107,9 @@ public class ConfigurationManager implements IConfigurationManager {
                 }
             }
             messageReader.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         } finally {
             try {
-                assert messageReader != null;
-                messageReader.close();
+                if (messageReader != null) messageReader.close();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }

@@ -25,15 +25,6 @@ public class SmtpClient implements ISmtpClient {
         port = serverPort;
     }
 
-    public void close() {
-        // Closes the socket
-        try {
-            socket.close();
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getMessage(), e);
-        }
-    }
-
     @Override
     public void sendMail(Mail mail) throws IOException, RuntimeException {
 
