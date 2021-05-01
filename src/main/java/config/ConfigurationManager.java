@@ -26,7 +26,7 @@ public class ConfigurationManager implements IConfigurationManager {
         this.CONFIG_FOLDER_PATH = configFolderPath;
         FileReader propertiesReader = null;
         try {
-            propertiesReader = new FileReader(ConfigurationManager.this.CONFIG_FOLDER_PATH + "config.properties");
+            propertiesReader = new FileReader(CONFIG_FOLDER_PATH + "config.properties");
 
             // read properties
             Properties properties = new Properties();
