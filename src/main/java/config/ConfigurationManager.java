@@ -2,25 +2,42 @@ package config;
 
 import prank.Message;
 import prank.Person;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.logging.Logger;
 
+/**
+ * Config manager that interracts with
+ * the configuration folder and its files
+ *
+ * Name : ConfigurationManager
+ * File : ConfigurationManager.java
+ * @author Gaétan Zwick
+ * @author Marco Maziero
+ * @version 1.0
+ * @since 01.05.2021
+ */
 public class ConfigurationManager implements IConfigurationManager {
-    private static final Logger LOG = Logger.getLogger(ConfigurationManager.class.getName());
-    private String smtpServerAddress;
-    private int smtpServerPort;
-    private int numberOfGroup;
+    private final String smtpServerAddress;
+    private final int smtpServerPort;
+    private final int numberOfGroup;
     private final List<String> witnessesToCC = new ArrayList<>();
-
     private final String CONFIG_FOLDER_PATH;
 
+    /**
+     * Construct the instance with default config folder
+     * @throws IOException The folder or the config files are not found
+     */
     public ConfigurationManager() throws IOException {
         this("configuration/");
     }
 
+    /**
+     * Reads the config.properties file and sets the local variables
+     * @param configFolderPath The path wanted for the config folder
+     * @throws IOException The folder or the config files are not found
+     */
     public ConfigurationManager(String configFolderPath) throws IOException {
         this.CONFIG_FOLDER_PATH = configFolderPath;
         FileReader propertiesReader = null;
@@ -45,26 +62,47 @@ public class ConfigurationManager implements IConfigurationManager {
         }
     }
 
+    /**
+     * Retrieves the config SMTP address
+     * @return The retrieved address
+     */
     @Override
     public String getSmtpServerAddress() {
         return smtpServerAddress;
     }
 
+    /**
+     * Retrieves the config SMTP port
+     * @return The retrieved port
+     */
     @Override
     public int getSmtpServerPort() {
         return smtpServerPort;
     }
 
+    /**
+     * Retreves the number of groups wanted
+     * @return The number of groups
+     */
     @Override
     public int getNumberOfGroup() {
         return numberOfGroup;
     }
 
+    /**
+     * Retrieves the witnesses in the config file
+     * @return The list of witnesses mail addresses
+     */
     @Override
     public List<String> getWitnessesToCC() {
         return witnessesToCC;
     }
 
+    /**
+     * Reads the emails file
+     * @return A list of victims mail addresses
+     * @throws IOException If the file is not found or cannot be read
+     */
     @Override
     public List<Person> getVictims() throws IOException {
         List<Person> victims = new LinkedList<>();
@@ -92,6 +130,11 @@ public class ConfigurationManager implements IConfigurationManager {
         return victims;
     }
 
+    /**
+     * Reads the messages file
+     * @return A list of parsed mail messages
+     * @throws IOException It the file is not found or cannot be read
+     */
     @Override
     public List<Message> getMessages() throws IOException {
         List<Message> messages = new LinkedList<>();

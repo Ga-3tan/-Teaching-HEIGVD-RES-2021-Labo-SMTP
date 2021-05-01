@@ -9,18 +9,39 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Smtp client that can send mails to a specified smtp server
+ *
+ * Name : SmtpClient
+ * File : SmtpClient.java
+ * @author Gaétan Zwick
+ * @author Marco Maziero
+ * @version 1.0
+ * @since 01.05.2021
+ */
 public class SmtpClient implements ISmtpClient {
     private static final Logger LOG = Logger.getLogger(SmtpClient.class.getName());
     private static final String CRLF = "\r\n";
     private final int port;
     private final String address;
 
+    /**
+     * Stores the given address and port for future connexion
+     * @param serverAddress The smtp server address
+     * @param serverPort The smtp server port
+     */
     public SmtpClient(String serverAddress, int serverPort) {
-        // sets the variables
+        // Sets the variables
         address = serverAddress;
         port = serverPort;
     }
 
+    /**
+     * Sends an email through the client
+     * @param mail The mail to send
+     * @throws IOException If the mail could not be sent
+     * @throws RuntimeException If the smtp server responded with an unexpected smtp code
+     */
     @Override
     public void sendMail(Mail mail) throws IOException, RuntimeException {
 
@@ -115,6 +136,13 @@ public class SmtpClient implements ISmtpClient {
         }
     }
 
+    /**
+     * Reads the server responses until the client should send data
+     * @param reader The reader binded to the socket
+     * @param expectedSmtpCode The expected SMTP response code from the server
+     * @throws IOException If something went wrong with the reader
+     * @throws RuntimeException If the response code from the server is unexpected
+     */
     private void readServer(BufferedReader reader, int expectedSmtpCode) throws IOException, RuntimeException {
         String line = reader.readLine();
         while (line != null && line.charAt(3) != ' ')
