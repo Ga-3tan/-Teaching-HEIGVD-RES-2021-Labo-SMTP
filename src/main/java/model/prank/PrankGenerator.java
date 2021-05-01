@@ -13,7 +13,7 @@ public class PrankGenerator {
     private static final Logger LOG = Logger.getLogger(PrankGenerator.class.getName());
     private final IConfigurationManager configManager;
 
-    public PrankGenerator(IConfigurationManager configurationManager) {
+    public PrankGenerator(IConfigurationManager configurationManager) throws IllegalArgumentException{
         this.configManager = configurationManager;
     }
 
@@ -29,11 +29,17 @@ public class PrankGenerator {
         int nbGroups = configManager.getNumberOfGroup();
         int nbVictims = victims.size();
 
+        // Checks if the groups can be made
+        if (nbVictims < 1 || nbGroups == 0)
+            throw new IllegalArgumentException("Number of victims and groups must be above 0");
+
         // Checks nbGroups and victims compatibility
         if (nbVictims / nbGroups < 3) {
             nbGroups = nbVictims / 3;
+            if (nbGroups == 0) nbGroups = 1;
+
             LOG.warning("There are not enough victims to generate the desired number of groups." +
-                    "We can only generate a max of " + nbGroups + " groups to have a teas 3 victims per group.");
+                    "We can only generate a max of " + nbGroups + " groups to have at least 3 or less victims per group.");
         }
 
         // Generates the groups

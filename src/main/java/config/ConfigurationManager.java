@@ -67,9 +67,14 @@ public class ConfigurationManager implements IConfigurationManager {
             String line;
             emailReader = new BufferedReader(new InputStreamReader(new FileInputStream("configuration/emails.utf8"), StandardCharsets.UTF_8));
             while ((line = emailReader.readLine()) != null) {
-                String[] mailToken = line.split(",");
-                if (mailToken.length < 3) continue;
-                victims.add(new Person(mailToken[1], mailToken[0], mailToken[2]));
+                String firstName = "", lastname = "";
+                String[] tokens = line.split("@");
+                String[] personInfo = tokens[0].split(".");
+                if (personInfo.length > 1) {
+                    firstName = personInfo[0];
+                    lastname  = personInfo[1];
+                }
+                victims.add(new Person(firstName, lastname, line));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -104,7 +109,6 @@ public class ConfigurationManager implements IConfigurationManager {
                     message.append(line).append('\n');
                 }
             }
-            messages.add(new Message(subject, message.toString()));
             messageReader.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
