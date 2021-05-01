@@ -1,8 +1,7 @@
 package config;
 
-import model.mail.Message;
-import model.mail.Person;
-import model.prank.PrankGenerator;
+import prank.Message;
+import prank.Person;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

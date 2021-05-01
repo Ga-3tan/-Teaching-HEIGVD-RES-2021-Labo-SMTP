@@ -1,8 +1,6 @@
-package model.prank;
+package prank;
 
-import model.mail.Mail;
-import model.mail.Message;
-import model.mail.Person;
+import smtp.Mail;
 
 import java.util.ArrayList;
 import java.util.List;

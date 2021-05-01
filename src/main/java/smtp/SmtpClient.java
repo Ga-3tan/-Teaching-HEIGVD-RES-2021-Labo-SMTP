@@ -1,8 +1,5 @@
 package smtp;
 
-import model.mail.Mail;
-
-import javax.net.ssl.SSLSocket;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;

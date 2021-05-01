@@ -1,7 +1,6 @@
 package smtp;
 
-import model.mail.Mail;
-import model.mail.Message;
+import prank.Message;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;

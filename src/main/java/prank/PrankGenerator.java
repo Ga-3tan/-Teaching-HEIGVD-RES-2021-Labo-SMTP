@@ -1,8 +1,6 @@
-package model.prank;
+package prank;
 
 import config.IConfigurationManager;
-import model.mail.Message;
-import model.mail.Person;
 
 import java.io.IOException;
 import java.util.ArrayList;
