@@ -55,6 +55,11 @@ Une fois MockMock lancé, l'interface web est disponible à l'adresse [http://lo
      - Chaque première ligne de message doit commencer par `Subject:` pour indiquer le nom du sujet du mail.
      - Chaque message DOIT se terminer par la ligne `====` pour être bien compris par le programme
 
+4. (optionnel) Lancer le serveur MockMock
+5. Ouvrir un terminal dans le dossier parent (ou se trouve le fichier .jar)
+6. Exécuter la commande `java -jar <nomDuFichier.jar>`
+7. Si tout a bien été configuré, le programme va lire les fichiers de configuration et les mails vont s'envoyer
+
 ## Implémentation
 
 ### Diagramme de classes (UML)
