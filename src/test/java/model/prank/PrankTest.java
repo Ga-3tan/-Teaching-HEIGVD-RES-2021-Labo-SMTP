@@ -32,11 +32,11 @@ public class PrankTest {
 
         Mail mail = prank.generateMail();
 
-        assert (mail.getFrom().equals(pranker.getAddress()));
-        assert (mail.getTo().equals(new ArrayList<>(Arrays.asList(p1.getAddress(), p2.getAddress()))));
-        assert (mail.getCCs().equals(witnesses));
-        assert (mail.getContent().equals(m1.getContent()) &&
-                mail.getSubject().equals(m1.getSubject()));
+        Assertions.assertEquals(mail.getFrom(), pranker.getAddress());
+        Assertions.assertEquals(mail.getTo(), new ArrayList<>(Arrays.asList(p1.getAddress(), p2.getAddress())));
+        Assertions.assertEquals(mail.getCCs(), new ArrayList<>(Arrays.asList(p3.getAddress(), p4.getAddress())));
+        Assertions.assertEquals(mail.getContent(), m1.getContent());
+        Assertions.assertEquals(mail.getSubject(), m1.getSubject());
     }
 
     @Test
@@ -48,11 +48,11 @@ public class PrankTest {
 
         Mail mail = prank.generateMail();
 
-        assert (mail.getFrom().equals(pranker.getAddress()));
-        assert (mail.getTo().equals(new ArrayList<>(Arrays.asList(p1.getAddress(), p2.getAddress()))));
-        assert (mail.getCCs().equals(new ArrayList<>()));
-        assert (mail.getContent().equals(m2.getContent()) &&
-                mail.getSubject().equals(m2.getSubject()));
+        Assertions.assertEquals(mail.getFrom(), pranker.getAddress());
+        Assertions.assertEquals(mail.getTo(), new ArrayList<>(Arrays.asList(p1.getAddress(), p2.getAddress())));
+        Assertions.assertEquals(mail.getCCs(), new ArrayList<>());
+        Assertions.assertEquals(mail.getContent(), m2.getContent());
+        Assertions.assertEquals(mail.getSubject(), m2.getSubject());
     }
 
     @Test

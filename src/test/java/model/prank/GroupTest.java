@@ -24,7 +24,7 @@ public class GroupTest {
         expectedOuput.add(p1);
         expectedOuput.add(p2);
 
-        assert(group.getMembers() == expectedOuput);
+        Assertions.assertEquals(group.getMembers(), expectedOuput);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class GroupTest {
         List<Person> expectedOuput = new ArrayList<>();
         expectedOuput.add(p1);
 
-        assert(group.getMembers() == expectedOuput);
+        Assertions.assertEquals(group.getMembers(), expectedOuput);
     }
 
     @Test
@@ -45,6 +45,6 @@ public class GroupTest {
         group.addMember(p1);
         group.removeMember(p1);
 
-        assert(group.getMembers().isEmpty());
+        Assertions.assertTrue(group.getMembers().isEmpty());
     }
 }
