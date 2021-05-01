@@ -29,6 +29,7 @@ public class SmtpClient implements ISmtpClient {
     public void sendMail(Mail mail) throws IOException, RuntimeException {
 
         // Creates the socket and connects to the smtp server
+        System.out.println("Connecting to the SMTP server " + address + ":" + port);
         socket = new Socket(InetAddress.getByName(address), port);
 
         // Sends the mail
@@ -38,6 +39,7 @@ public class SmtpClient implements ISmtpClient {
             // Creates the streams
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
             writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
+            System.out.println("Sending mail: " + mail.getSubject());
 
             // Server greetings
             readServer(reader, 220);
@@ -81,12 +83,6 @@ public class SmtpClient implements ISmtpClient {
                 writer.flush();
             }
 
-            /*/ Writes the CC mails
-            for (String cc : mail.getCCs()) {
-                writer.write("cc: " + cc + CRLF);
-                writer.flush();
-            }*/
-
             // Writes the subject
             writer.write("Subject: " + mail.getSubject() + CRLF + CRLF);
             writer.flush();
@@ -105,11 +101,13 @@ public class SmtpClient implements ISmtpClient {
             writer.flush();
             readServer(reader, 221);
 
+            System.out.println("Mail sent successfully !");
+
             // Closes all
             reader.close();
             writer.close();
             socket.close();
-
+            System.out.println("Connexion with SMTP server has ended");
         } finally {
             try {
                 if (reader != null) reader.close();
@@ -125,7 +123,6 @@ public class SmtpClient implements ISmtpClient {
         String line = reader.readLine();
         System.out.println(line);
         while (line != null && line.charAt(3) != ' ') {
-            System.out.println(line);
             line = reader.readLine();
         }
 

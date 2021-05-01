@@ -7,8 +7,10 @@ import model.mail.Person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class PrankGeneratorTest {
@@ -72,7 +74,12 @@ public class PrankGeneratorTest {
         numberOfGroups = 2;
 
         PrankGenerator generator = new PrankGenerator(config);
-        List<Prank> pranks = generator.generatePranks();
+        List<Prank> pranks = new LinkedList<>();
+        try {
+            pranks = generator.generatePranks();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // 1 prank per group
         Assertions.assertEquals(pranks.size(), numberOfGroups);
@@ -142,7 +149,13 @@ public class PrankGeneratorTest {
         numberOfGroups = 3;
 
         PrankGenerator generator = new PrankGenerator(config);
-        List<Prank> pranks = generator.generatePranks();
+
+        List<Prank> pranks = new LinkedList<>();
+        try {
+            pranks = generator.generatePranks();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // 1 prank per group
         // should not be 3 groups anymore
