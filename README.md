@@ -68,6 +68,8 @@ Une fois MockMock lancé, l'interface web est disponible à l'adresse [http://lo
 ### Diagramme de classes (UML)
 ![UML](https://github.com/Ga-3tan/Teaching-HEIGVD-RES-2021-Labo-SMTP/blob/main/uml/UML.png)
 
+D'autres formats de l'UML (.sly et .pdf) peuvent être trouvés dans le dossier [uml](https://github.com/Ga-3tan/Teaching-HEIGVD-RES-2021-Labo-SMTP/tree/main/uml)
+
 ### Choix d'implémentation
 
 #### La classe `ConfigurationManager`
